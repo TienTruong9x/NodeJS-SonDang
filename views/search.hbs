@@ -1,0 +1,19 @@
+<div class="search">
+    <form class="form-inline mt-4 mb-4">
+    <input class="form-control mr-sm-2  w-50" type="search" placeholder="Search" aria-label="Search" name="q">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+<h2>
+    Đây là kết quả: {{q}}
+</h2>
+  <form method="POST" class="form-inline mt-4 mb-4">
+    <input class="form-control mr-sm-2  w-50" type="search" placeholder="Search" aria-label="Search" name="sub">
+    <input class="form-control mr-sm-2  w-50" type="search" placeholder="Email" aria-label="Search" name="email">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Gửi</button>
+  </form>
+
+  <h2>
+    Đây là kết quả gửi: {{sub}}<br>
+    {{email}}
+</h2>

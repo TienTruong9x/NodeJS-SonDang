@@ -1,0 +1,149 @@
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+main {
+    
+    background: #17232A;
+    padding: 64px 0 32px 0;
+    color: #fefefe;
+    right: 0;
+    .second {
+        margin-top: 50px;
+    }
+
+    h5 {
+        position: relative;
+        font-weight: 500;
+        width: 100%;
+        text-transform: uppercase;
+        ;
+
+        &:after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            bottom: -8px;
+            left: 0;
+            background: #fff;
+        }
+    }
+
+    ul {
+        padding-top: 12px;
+    }
+
+    .contact {
+        &:after {
+            width: 100px;
+        }
+    }
+
+    .about {
+        &:after {
+            width: 60px;
+        }
+    }
+
+    .features {
+        &:after {
+            width: 115px;
+        }
+    }
+
+    .comparison {
+        &:after {
+            width: 170px;
+        }
+    }
+
+    .help {
+        &:after {
+            width: 140px;
+        }
+    }
+
+    .affiliate {
+        &:after {
+            width: 150px;
+        }
+    }
+
+    .artical {
+        &:after {
+            width: 110px;
+        }
+    }
+
+    .container {
+        .row {
+            &:nth-child(2) {
+                i {
+                    color: #111;
+                    font-size: 16px;
+                    padding: 8px;
+                    border-radius: 50%;
+                    background-color: #fff;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        bottom: -8px;
+                        left: 20px;
+                        height: 1px;
+                        width: 20px;
+                        background: #fff;
+                    }
+
+                    &:nth-child(2) {
+                        &:after {
+                            left: 55px;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+                padding: 28px 0;
+
+                h3 {
+                    font-weight: 800;
+                }
+
+                .list-inline-item {
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        margin-left: 4px;
+                        margin-top: 6px;
+                        height: 16px;
+                        width: 2px;
+                        background: #fff;
+                    }
+
+                    &:nth-last-child(1) {
+                        &:after {
+                            content: '';
+                            background: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media query
+@media only screen and (max-width: 650px) {
+    footer{
+        bottom: -80rem;
+        main{
+            padding: 18px 0 0 0;
+        }
+    }
+    .first,
+    .second {
+        margin-top: 24px !important;
+    }
+}
