@@ -1,19 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const newsRoute = require("./NewRoute");
+const siteRoute = require("./SiteRoute");
 
+function routes(app){
+  app.use('/',siteRoute);
+  app.use('/news',newsRoute);
+}
 
-router.post('/search', function(req, res, next) {
-  console.log(req.body);
-  res.render('search', { title: 'Search',sub:req.body.sub,email:req.body.email });
-});
-
-router.get('/search', function(req, res, next) {
-  res.render('search', { title: 'Search',q:req.query.q });
-});
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-
-module.exports = router;
+module.exports = routes;
