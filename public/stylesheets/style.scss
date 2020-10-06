@@ -1,11 +1,10 @@
-footer{
+footer {
     position: absolute;
     bottom: 0;
     width: 100%;
 }
 main {
-    
-    background: #17232A;
+    background: #17232a;
     padding: 64px 0 32px 0;
     color: #fefefe;
     right: 0;
@@ -18,8 +17,6 @@ main {
         font-weight: 500;
         width: 100%;
         text-transform: uppercase;
-        ;
-
         &:after {
             content: '';
             position: absolute;
@@ -136,9 +133,9 @@ main {
 
 // media query
 @media only screen and (max-width: 650px) {
-    footer{
+    footer {
         bottom: -80rem;
-        main{
+        main {
             padding: 18px 0 0 0;
         }
     }
