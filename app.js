@@ -8,7 +8,7 @@ var app = express();
 const route = require('./routes');
 
 //Connect DB
-const db=require('./app/config/index');
+const db = require('./app/config/index');
 db.connect();
 
 // view engine setup
