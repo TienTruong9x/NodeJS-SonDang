@@ -6,6 +6,11 @@ var logger = require('morgan');
 var hbs = require('hbs');
 var app = express();
 const route = require('./routes');
+
+//Connect DB
+const db=require('./app/config/index');
+db.connect();
+
 // view engine setup
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('views', path.join(__dirname, 'views'));

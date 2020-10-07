@@ -1,7 +1,14 @@
+const Course = require('../models/Course');
+
 class SiteController {
+
     //[GET] /
-    index(req, res) {
-        res.render('index', { title: 'Express' });
+    index(req, res,next) {
+        Course.find({})
+            .then(courses=>{
+                res.render('index', { title: 'HOME',courses});
+            })
+            .catch(()=>next());  
     }
 
     //[GET] /search
