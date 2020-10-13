@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 //slug gennerator
 var slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+//soft delete
+var mongooseDelete = require('mongoose-delete');
 
 const Course = new Schema(
     {
@@ -16,5 +17,9 @@ const Course = new Schema(
     },
     { timestamps: true },
 );
+
+// add plugin
+mongoose.plugin(slug);
+Course.plugin(mongooseDelete,{ overrideMethods: 'all',deletedAt : true })
 
 module.exports = mongoose.model('Course', Course);

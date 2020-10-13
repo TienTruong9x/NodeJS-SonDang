@@ -5,8 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
 var app = express();
-const route = require('./routes');
-
+var route = require('./routes');
+//Method overight
+var methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 //Connect DB
 const db = require('./app/config/index');
 db.connect();

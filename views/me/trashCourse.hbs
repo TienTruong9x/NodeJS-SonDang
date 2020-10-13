@@ -1,0 +1,89 @@
+<div>
+  <h1>Khóa học đã xóa : </h1>
+  <a href="/me/course">
+    <i class="fas fa-long-arrow-alt-left fa-2x"></i>
+  </a>
+</div>
+<table class="table mt-4 mb-4">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tên khóa học</th>
+      <th scope="col">Trình độ</th>
+      <th scope="col" colspan="4">Thời gian xóa</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each courses}}
+    <tr>
+      <th scope="row">{{increase @index}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.level}}</td>
+      <td>{{this.deletedAt}}</td>
+      <td>
+        <a name="" id="" class="btn btn-info restore" data-id="{{this._id}}" role="button">
+          <i class="fas fa-undo-alt"></i>
+        </a>
+      </td>
+      <td colspan="2">
+        <a name="" id="restore" class="btn btn-danger forceDel" role="button" data-toggle="modal"
+          data-target="#deleteCourse" data-id="{{this._id}}"><i class="fas fa-eraser"></i></a>
+      </td>
+    </tr>
+    {{else}}
+    <tr>
+      <td colspan="6" class="text-center">
+        Không có khóa học nào đã bị xóa. <a href="/me/course">Trở lại.</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa vĩnh viễn khóa học này ? Không thể khôi phục ?
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" id="btn-forceDel-course">Xác nhận</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete Form Hidden --}}
+<form method="POST" id="forceDel-form"></form>
+<form method="POST" id="restore-form"></form>
+
+<script>
+
+  window.onload = () => {
+    //restore
+    $(".restore").click(function (event) {
+      event.preventDefault();
+      $('#restore-form').attr('action', `/course/${$(this).data('id')}/restore?_method=PATCH`);
+      $('#restore-form').submit();
+    });
+
+    //forceDel
+    $(".forceDel").click(function (event) {
+      event.preventDefault();
+      $('#forceDel-form').attr('action', `/course/${$(this).data('id')}/force?_method=DELETE`);
+    });
+
+    $("#btn-forceDel-course").click(() => {
+      $('#forceDel-form').submit();
+    })
+  }
+</script>
