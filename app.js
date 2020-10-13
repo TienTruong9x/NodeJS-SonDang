@@ -13,6 +13,9 @@ db.connect();
 
 // view engine setup
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('increase', (a) => {
+    return a + 1;
+});
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

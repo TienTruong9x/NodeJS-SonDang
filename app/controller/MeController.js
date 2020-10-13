@@ -3,7 +3,11 @@ const Course = require('../models/Course');
 class MeController {
     //[GET] /me/course
     courseMe(req, res, next) {
-        res.render('me/meCourse');
+        Course.find({})
+            .then((courses) => {
+                res.render('me/meCourse', { courses });
+            })
+            .catch(next);
     }
 
     //[GET]  /me/news
