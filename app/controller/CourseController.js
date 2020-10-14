@@ -65,6 +65,21 @@ class CourseController {
       })
       .catch(next);
   }
+
+  //[POST] /course/handle-checkbox-all
+  handleCheckboxAll(req, res, next) {
+    switch (req.body.action) {
+      case "delete":
+        Course.delete({ _id: { $in: req.body.courseIDs } })
+          .then(() => {
+            res.redirect("back");
+          })
+          .catch(next);
+        break;
+      default:
+        res.json({ mesenger: "Action invalid" });
+    }
+  }
 }
 
 module.exports = new CourseController();
