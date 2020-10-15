@@ -152,13 +152,13 @@ main {
     position: relative;
     display: inline-block;
     border-radius: 2px;
-  }
-  
-  .notification:hover {
+}
+
+.notification:hover {
     background: red;
-  }
-  
-  .notification .badge {
+}
+
+.notification .badge {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -166,4 +166,4 @@ main {
     border-radius: 50%;
     background-color: red;
     color: white;
-  }
+}

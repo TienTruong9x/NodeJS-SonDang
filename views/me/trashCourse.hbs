@@ -4,42 +4,65 @@
     <i class="fas fa-long-arrow-alt-left fa-2x"></i>
   </a>
 </div>
-<table class="table mt-4 mb-4">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Tên khóa học</th>
-      <th scope="col">Trình độ</th>
-      <th scope="col" colspan="4">Thời gian xóa</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each courses}}
-    <tr>
-      <th scope="row">{{increase @index}}</th>
-      <td>{{this.name}}</td>
-      <td>{{this.level}}</td>
-      <td>{{this.deletedAt}}</td>
-      <td>
-        <a name="" id="" class="btn btn-info restore" data-id="{{this._id}}" role="button">
-          <i class="fas fa-undo-alt"></i>
-        </a>
-      </td>
-      <td colspan="2">
-        <a name="" id="restore" class="btn btn-danger forceDel" role="button" data-toggle="modal"
-          data-target="#deleteCourse" data-id="{{this._id}}"><i class="fas fa-eraser"></i></a>
-      </td>
-    </tr>
-    {{else}}
-    <tr>
-      <td colspan="6" class="text-center">
-        Không có khóa học nào đã bị xóa. <a href="/me/course">Trở lại.</a>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
 
+<form action="/course/handle-checkbox-all" method="POST">
+  <div class="mt-4 d-flex align-items-center justify-content-between">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" name="" id="check-all">
+        Chọn tất cả
+      </label>
+    </div>
+    <select class="form-control form-control-sm w-50" name="action" id="" required="required">
+      <option value="">--Chọn--</option>
+      <option value="restore">Khôi phục</option>
+      <option value="forceDel">Xóa vĩnh viễn</option>
+    </select>
+    <button type="submit" class="btn btn-success" disabled="disabled" id="btn-apply">Áp dụng</button>
+  </div>
+
+  <table class="table mt-4 mb-4">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th scope="col">#</th>
+        <th scope="col">Tên khóa học</th>
+        <th scope="col">Trình độ</th>
+        <th scope="col" colspan="4">Thời gian xóa</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+      <tr>
+        <td>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input checkbox-items" name="courseIDs" value="{{this._id}}" />
+          </div>
+        </td>
+        <td>{{increase @index}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.level}}</td>
+        <td>{{this.deletedAt}}</td>
+        <td>
+          <a name="" id="" class="btn btn-info restore" data-id="{{this._id}}" role="button">
+            <i class="fas fa-undo-alt"></i>
+          </a>
+        </td>
+        <td colspan="2">
+          <a name="" id="restore" class="btn btn-danger forceDel" role="button" data-toggle="modal"
+            data-target="#deleteCourse" data-id="{{this._id}}"><i class="fas fa-eraser"></i></a>
+        </td>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="6" class="text-center">
+          Không có khóa học nào đã bị xóa. <a href="/me/course">Trở lại.</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
 <!-- Modal -->
 <div class="modal fade" id="deleteCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -84,6 +107,29 @@
 
     $("#btn-forceDel-course").click(() => {
       $('#forceDel-form').submit();
-    })
+    });
+
+    //checkbox trash
+    $('#check-all').change(function () {
+      var isCheckAll = $(this).prop('checked');
+      if (isCheckAll) {
+        $('.checkbox-items').prop('checked', isCheckAll);
+        $('#btn-apply').removeAttr('disabled');
+      } else {
+        $('.checkbox-items').prop('checked', isCheckAll);
+        $('#btn-apply').attr('disabled', 'disabled');
+      }
+    });
+
+    //when check items
+    $('.checkbox-items').change(function () {
+      let isCheckAll = $('.checkbox-items').length === $('.checkbox-items:checked').length;
+      $('#check-all').prop('checked', isCheckAll);
+      if ($('.checkbox-items:checked').length > 0) {
+        $('#btn-apply').removeAttr('disabled');
+      } else {
+        $('#btn-apply').attr('disabled', 'disabled');
+      }
+    });
   }
 </script>

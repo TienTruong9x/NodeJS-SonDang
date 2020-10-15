@@ -10,6 +10,6 @@ router.put('/:id', courseController.editUpdate);
 router.patch('/:id/restore', courseController.restore);
 router.delete('/:id/delete', courseController.destroy);
 router.delete('/:id/force', courseController.forceDestroy);
-router.post('/handle-checkbox-all', courseController.handleCheckboxAll)
+router.post('/handle-checkbox-all', courseController.handleCheckboxAll);
 
 module.exports = router;
