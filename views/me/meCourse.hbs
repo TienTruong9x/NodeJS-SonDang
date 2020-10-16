@@ -25,9 +25,9 @@
       <tr>
         <th scope="col"></th>
         <th scope="col">#</th>
-        <th scope="col">Tên khóa học</th>
-        <th scope="col">Trình độ</th>
-        <th scope="col" colspan="3">Thời gian tạo</th>
+        <th scope="col" style="width: max-content;">Tên khóa học <a href=""><i class="fas fa-sort"></i></a> </th>
+        <th scope="col" style="width: 10%">Trình độ &nbsp;<a href=""><i class="fas fa-sort"></i></a></th>
+        <th scope="col" colspan="3" style="width: max-content;">Thời gian tạo <a href=""><i class="fas fa-sort"></i></a></th>
 
       </tr>
     </thead>
@@ -36,7 +36,7 @@
       <tr>
         <td>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input checkbox-items" name="courseIDs" value="{{this._id}}"/>
+            <input type="checkbox" class="form-check-input checkbox-items" name="courseIDs" value="{{this._id}}" />
           </div>
         </td>
         <th scope="row">{{increase @index}}</th>
